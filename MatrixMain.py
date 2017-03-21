@@ -9,10 +9,6 @@ errorFlag = False
 dataToSendBack = {}
 data = {}
 
-#with open('MatrixMain.json') as data_file:
-# with open(sys.argv[1]) as data_file:
-#     data = json.load(data_file)
-#data=json.loads(sys.argv[1])
 lines = sys.stdin.readlines()
 data = json.loads(lines[0])
 numberOfRows = len(data["data"])
@@ -93,10 +89,8 @@ for rowIndex in xrange(0,len(data["data"])):
                                        data["data"][rowIndex + 9][element - 9], data["data"][rowIndex + 10][element - 10]))
         except:
             pass
-print(matrixList)
-print(maxProd)
 dataToSendBack['sequence'] = matrixList
-dataToSendBack['total'] = product
+dataToSendBack['total'] = maxProd
 json_data = json.dumps(dataToSendBack, sort_keys=True)
 print(json_data)
 sys.stdout.flush()
