@@ -1,11 +1,9 @@
 import json
-from pprint import pprint
 import sys
 
 product = 0
 matrixList = []
 maxProd = 0
-errorFlag = False
 dataToSendBack = {}
 data = {}
 
@@ -89,6 +87,8 @@ for rowIndex in xrange(0,len(data["data"])):
                                        data["data"][rowIndex + 9][element - 9], data["data"][rowIndex + 10][element - 10]))
         except:
             pass
+
+#creates JSON object to be shipped back to node with matrix list and highest product
 dataToSendBack['sequence'] = matrixList
 dataToSendBack['total'] = maxProd
 json_data = json.dumps(dataToSendBack, sort_keys=True)
