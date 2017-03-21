@@ -5,3 +5,4 @@ Step 2. Install Node.JS and Python. During both installations, make sure both ar
 you can add them in Control Panel –> System Properties –> Environment Variables-> Paths -> Edit and then the path of the missing program.
 Step 3. Open up Node.JS command prompt and change directory to the Matrix-Master folder.
 Step 4. Run the command "node server.js" and click the button to see the results.
+Note: due to n being random, it may take a few seconds for the results to return.
