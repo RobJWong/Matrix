@@ -1,13 +1,17 @@
 import json
 from pprint import pprint
+import sys
 
 product = 0
 matrixList = []
 maxProd = 0
 errorFlag = False
-sequenceNumber =11
+dataToSendBack = {}
+#dataName = 'sequence'
+#dataName2 = 'total'
 
-with open('MatrixMain.json') as data_file:
+
+with open('Matrix.json') as data_file:
     data = json.load(data_file)
 #pprint(data["data"][1])
 numberOfRows = len(data["data"])
@@ -25,7 +29,7 @@ for rowIndex in xrange(0,len(data["data"])):
         #quits process if not nxn
         errorFlag = True
         break
-    for element in xrange(0, elementsInRow - (sequenceNumber - 1)):
+    for element in xrange(0, elementsInRow):
         #calculates from left to right of elements in row. elementsInRow -2 to make sure the end does not
         #get calculated
         try: 
@@ -66,7 +70,7 @@ for rowIndex in xrange(0,len(data["data"])):
             errorFlag = True
         try:
         #calculates the diagonal from top right to bottom left
-            if(element >= (sequenceNumber - 1)):
+            if(element - 2 >= 0):
                 product = (data["data"][rowIndex][element]* data["data"][rowIndex + 1][element - 1] * data["data"][rowIndex + 2][element - 2])
                 print((data["data"][rowIndex][element], data["data"][rowIndex + 1][element - 1], data["data"][rowIndex + 2][element - 2]))
                 print(product)
@@ -80,5 +84,7 @@ for rowIndex in xrange(0,len(data["data"])):
             
 # while (errorFlag != True):
 #     for rowIndex in xrange(0,len(data["data"]))
-print(matrixList)
-print(maxProd)
+dataToSendBack['sequence'] = matrixList
+dataToSendBack['total'] = product
+json_data = json.dumps(dataToSendBack, sort_keys=True)
+print(json_data)

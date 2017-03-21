@@ -1,13 +1,20 @@
 import json
 from pprint import pprint
+import sys
 
 product = 0
 matrixList = []
 maxProd = 0
 errorFlag = False
+dataToSendBack = {}
+data = {}
 
-with open('MatrixMain.json') as data_file:
-    data = json.load(data_file)
+#with open('MatrixMain.json') as data_file:
+# with open(sys.argv[1]) as data_file:
+#     data = json.load(data_file)
+#data=json.loads(sys.argv[1])
+lines = sys.stdin.readlines()
+data = json.loads(lines[0])
 numberOfRows = len(data["data"])
 
 ###########use while loop to check for 0's to process faster
@@ -88,3 +95,8 @@ for rowIndex in xrange(0,len(data["data"])):
             pass
 print(matrixList)
 print(maxProd)
+dataToSendBack['sequence'] = matrixList
+dataToSendBack['total'] = product
+json_data = json.dumps(dataToSendBack, sort_keys=True)
+print(json_data)
+sys.stdout.flush()
